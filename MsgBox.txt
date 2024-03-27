@@ -1,0 +1,179 @@
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	; the box title must end in zero
+	boxTitle byte "CS 3350", 0
+	msg byte "Welcome to Assembly", 0
+
+.code
+main proc
+	; for no title do this: mov ebx, 0
+	mov ebx, offset boxTitle
+	mov edx, offset msg
+	call MsgBox
+
+	invoke ExitProcess, 0
+main endp
+end main
+
+--------------------------------------------------------------------
+
+.386
+.model flat,stdcall
+.stack 4096
+exitprocess proto, dwexitcode:dword
+
+include irvine32.inc
+
+.data
+	; the box title must end in zero
+	boxtitle byte "cs 3350", 0
+	; 0dh, 0ah is the new line character
+	msg byte "welcome to assembly", 0dh, 0ah, "have you read the book?", 0
+
+.code
+main proc
+	; for no title do this: mov ebx, 0
+	mov ebx, offset boxtitle
+	mov edx, offset msg
+	call msgBoxAsk
+	call WriteInt
+
+	invoke exitprocess, 0
+main endp
+end main
+
+--------------------------------------------------------------------
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+;new line char: 0dh, 0ah
+
+.data
+	msg1 byte "CS 3350", 0
+	msg2 byte "Welcome", 0
+
+.code
+main proc
+	mov edx, offset msg1
+	call WriteString
+	;crlf does the same thing as the new line character
+	call crlf
+	mov edx, offset msg2
+	call WriteString
+
+	invoke ExitProcess, 0
+main endp
+end main
+
+--------------------------------------------------------------------
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	Intval dword 35
+
+.code
+main proc
+	mov eax, 9
+	call WriteInt
+	call crlf
+	call WriteBin
+	call crlf
+
+	mov eax, Intval
+	call WriteInt
+	call crlf
+	call WriteBin
+
+	invoke ExitProcess, 0
+main endp
+end main
+
+--------------------------------------------------------------------
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	randnum dword ?
+
+.code
+main proc
+	;Random32 is NOT random, it repeats the same number
+	;call Random32
+	;mov randnum, eax
+	;call WriteDec
+
+	;randomrange is exclusive starting at 0
+	mov eax, 10
+	call randomrange
+	call writedec
+
+	invoke ExitProcess, 0
+main endp
+end main
+
+--------------------------------------------------------------------
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	;mychar byte ?
+    ;decVal dword ?
+	fullname byte 20 dup(?)
+
+.code
+main proc
+;Characters
+	;call readchar
+	;mov mychar, al
+	;call writechar
+
+;Numbers: Unsigned
+	;call readdec
+	;mov decVal, eax
+	;call writedec
+	;call crlf
+	;call writehex
+
+;Numbers: Signed
+	;call readint
+	;mov decVal, eax
+	;call writeint
+	;call crlf
+	;call writehex
+
+;Strings
+	mov edx, offset fullname
+	mov ecx, sizeof fullname
+	call readstring
+	call writestring
+
+	invoke ExitProcess, 0
+main endp
+end main

@@ -1,0 +1,36 @@
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	apples dword 42, 47, 52, 63, 74, 34, 73
+	oranges dword 78, 53, 86, 26, 46, 51, 60
+	mangos dword 30, 39, 41, 70, 75, 84, 29
+
+.code
+main proc
+	mov esi, offset apples
+	mov edi, offset oranges
+	mov edx, offset mangos
+
+	mov ecx, lengthof apples
+	mov eax, 0
+L1:
+	add eax, [esi]
+	add eax, [edi]
+	add eax, [edx]
+
+	add esi, type apples
+	add edi, type oranges
+	add edx, type mangos
+	loop L1
+
+	call WriteInt
+
+	invoke ExitProcess, 0
+main endp
+end main

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <MASM Include="main.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="past_asm_code">
+      <UniqueIdentifier>{fa1ec782-1773-413a-9d99-4f550cf9322a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="past_asm_code\HW 4">
+      <UniqueIdentifier>{0fac62dd-a9a3-4acb-963f-616b1737652b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="past_asm_code\HW 5">
+      <UniqueIdentifier>{dc7f1f94-d3c2-4e9d-a06f-99da8ffee216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="past_asm_code\HW 6">
+      <UniqueIdentifier>{7edf2b6f-905a-4aa9-933c-e67c151cbb59}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="q1.txt">
+      <Filter>past_asm_code\HW 4</Filter>
+    </Text>
+    <Text Include="q2.txt">
+      <Filter>past_asm_code\HW 4</Filter>
+    </Text>
+    <Text Include="MsgBox.txt">
+      <Filter>past_asm_code</Filter>
+    </Text>
+    <Text Include="addition_calc.txt">
+      <Filter>past_asm_code</Filter>
+    </Text>
+    <Text Include="calculator.txt">
+      <Filter>past_asm_code</Filter>
+    </Text>
+    <Text Include="q10.txt">
+      <Filter>past_asm_code\HW 5</Filter>
+    </Text>
+    <Text Include="q9.txt">
+      <Filter>past_asm_code\HW 5</Filter>
+    </Text>
+    <Text Include="q8.txt">
+      <Filter>past_asm_code\HW 5</Filter>
+    </Text>
+    <Text Include="division_with_negs.txt">
+      <Filter>past_asm_code</Filter>
+    </Text>
+    <Text Include="honor.txt">
+      <Filter>past_asm_code\HW 5</Filter>
+    </Text>
+    <Text Include="hw6q8.txt">
+      <Filter>past_asm_code\HW 6</Filter>
+    </Text>
+    <Text Include="hw6q9.txt">
+      <Filter>past_asm_code\HW 6</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

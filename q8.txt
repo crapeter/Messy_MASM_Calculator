@@ -1,0 +1,35 @@
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	firstName byte 80 dup(0)
+	usage byte "Enter your first name: ", 0
+	part1 byte "Hello ", 0
+	part2 byte ". Welcome to CS3350"
+
+.code
+main proc
+	mov edx, offset usage
+	call writestring
+
+	;getting the first name
+	mov edx, offset firstName
+	mov ecx, sizeof firstName
+	call readstring
+
+	mov edx, offset part1
+	call writestring
+	mov edx, offset firstName
+	call writestring
+	mov edx, offset part2
+	call writestring
+
+
+	invoke ExitProcess, 0
+main endp
+end main

@@ -1,0 +1,43 @@
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+	usage byte "Enter a positive number: ", 0
+	answer byte "Total of all those numbers: ", 0
+    num dword ?
+	sum dword 0
+
+.code
+main proc
+	;getting the positive number
+	mov edx, offset usage
+	call writestring
+	call readdec
+	mov num, eax
+	mov ecx, num
+
+	L1:
+		mov num, ecx
+		mov eax, num
+		add sum, eax
+		call writedec
+		call crlf
+		loop L1
+	mov eax, 0
+	call writedec
+	call crlf
+	call crlf
+
+	mov eax, sum
+	mov edx, offset answer
+	call writestring
+	call writedec
+
+	invoke ExitProcess, 0
+main endp
+end main

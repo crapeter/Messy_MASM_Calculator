@@ -1,0 +1,37 @@
+
+.code
+main proc
+	mov edx, offset programTitle
+	call writestring
+	call crlf
+
+top:
+	call crlf
+	;displaying how to use this
+	mov edx, offset usage
+	call writestring
+
+	;getting the number
+	call readdec
+	inc eax
+
+	;generating the random number
+	call randomrange
+	mov edx, offset result
+	call writestring
+	call writedec
+	call crlf
+
+	;seeing the they want to repeat
+    mov edx, offset again
+    call writestring
+	call readdec
+	cmp eax, 1
+	je top
+
+	call crlf
+	mov edx, offset endProgram
+	call writestring
+	invoke ExitProcess, 0
+main endp
+end main

@@ -1,0 +1,74 @@
+
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess proto, dwExitCode:dword
+
+include irvine32.inc
+
+.data
+    num1 dword ?
+    num2 dword ?
+	negNum1 dword 1
+	negNum2 dword 1
+	result dword 0
+	remainder byte " with a remainder of ", 0
+	divError byte "Error: Division by zero", 0
+
+.code
+main proc
+	call readint
+	mov num1, eax
+	call readint
+	mov num2, eax
+
+compare:
+	mov eax, num1
+	test num1, eax
+	js num1Neg
+	mov eax, num2
+	test num2, eax
+	js num2Neg
+	jmp division
+
+num1Neg:
+	mov negNum1, -1
+	neg num1
+	mov eax, num2
+	test num2, eax
+	js num2Neg
+	jmp division
+num2Neg:
+	mov negNum1, -1
+	neg num2
+
+division:
+    cmp num2, 0
+    je divisionError
+    mov eax, num1
+    xor edx, edx ;clears the edx register and resets everythin to 0
+    div num2
+	mov result, edx
+	mul negNum1
+	mul negNum2
+    call writeint
+	mov edx, result
+    cmp edx, 0
+    jz endDivision ;jumps to endDivision if the remainder is zero and doesn't need to be displayed'
+    mov result, edx
+    mov eax, result
+    mov edx, offset remainder
+    call writestring
+	call writeint
+endDivision:
+    jmp endProgram
+
+divisionError:
+	mov edx, offset divError
+	call writestring
+	jmp endProgram
+
+endProgram:
+	invoke ExitProcess, 0
+main endp
+end main
