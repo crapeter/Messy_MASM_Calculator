@@ -4,6 +4,8 @@
 .stack 4096
 ExitProcess proto, dwExitCode:dword
 
+;test to see if git works on windows
+
 include irvine32.inc
 
 .data
